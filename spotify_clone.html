@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Clone</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+        }
+        header {
+            background-color: #1db954;
+            padding: 10px;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        #playlist {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .track {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+            cursor: pointer;
+        }
+        .track:hover {
+            background-color: #282828;
+        }
+        #audioPlayer {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Spotify Clone</h1>
+    </header>
+
+    <div id="playlist">
+        <div class="track" data-src="track1.mp3">
+            <span>Track 1 - Artist 1</span>
+            <span>Play</span>
+        </div>
+        <div class="track" data-src="track2.mp3">
+            <span>Track 2 - Artist 2</span>
+            <span>Play</span>
+        </div>
+        <div class="track" data-src="track3.mp3">
+            <span>Track 3 - Artist 3</span>
+            <span>Play</span>
+        </div>
+    </div>
+
+    <div id="audioPlayer">
+        <audio id="audio" controls>
+            <source id="audioSource" src="" type="audio/mp3">
+            Your browser does not support the audio tag.
+        </audio>
+    </div>
+
+    <script>
+        const tracks = document.querySelectorAll('.track');
+        const audio = document.getElementById('audio');
+        const audioSource = document.getElementById('audioSource');
+
+        tracks.forEach(track => {
+            track.addEventListener('click', () => {
+                const src = track.getAttribute('data-src');
+                audioSource.src = src;
+                audio.load();
+                audio.play();
+            });
+        });
+    </script>
+
+</body>
+</html>
